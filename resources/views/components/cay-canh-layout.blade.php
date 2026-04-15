@@ -113,6 +113,38 @@
             display: grid;
             grid-template-columns: repeat(2, 30% 70%);
         }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 12px;
+                padding: 12px 15px;
+            }
+
+            .navbar-nav {
+                justify-content: center;
+                width: 100%;
+            }
+
+            .search-bar {
+                width: 100%;
+                max-width: none;
+            }
+
+            .search-bar input {
+                font-size: 16px;
+                padding: 10px 40px 10px 15px;
+            }
+
+            .list-caycanh {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)) !important;
+                gap: 10px !important;
+            }
+
+            .caycanh {
+                height: 240px !important;
+            }
+        }
     </style>
 </head>
 
@@ -132,9 +164,8 @@
                         </ul>
                     </div>
                     <div class="search-bar">
-                        <form method="post" action="{{url('/timkiem')}}">
-                            {{ csrf_field() }}
-                            <input type="text" name="keyword" placeholder="Tìm kiếm cây cảnh...">
+                        <form method="get" action="{{url('/timkiem')}}">
+                            <input type="text" name="keyword" placeholder="Tìm kiếm cây cảnh..." value="{{ request('keyword') }}">
                             <button class="search-btn"><i class="fa fa-search" aria-hidden="true"></i></button>
                         </form>
                     </div>
