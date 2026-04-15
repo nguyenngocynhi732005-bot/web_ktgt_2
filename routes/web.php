@@ -9,15 +9,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SanPhamController;
 
 
-<<<<<<< HEAD
+
 use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\ManagementTreesController;
 
-=======
+
 
 Route::get('/', [HomeController::class, 'index']);
->>>>>>> d81e85fdd523ffd5af041adac5d03d51b434b791
+
 
 
 //PANH
@@ -29,11 +29,6 @@ Route::get('/sanpham/create','App\Http\Controllers\SanPhamController@create')->n
 Route::post('/sanpham/save/{action}','App\Http\Controllers\SanPhamController@save')->name("sanpham.save");
 
 
-
-<<<<<<< HEAD
-
-=======
->>>>>>> d81e85fdd523ffd5af041adac5d03d51b434b791
 Route::get('/dashboard', function () {
     //return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

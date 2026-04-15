@@ -65,11 +65,11 @@ class ProfileController extends Controller
         $user = $request->user();
 
         if (! $user || empty($user->email)) {
-            return Redirect::back()->with('status', 'Cannot send email: user or email is missing.');
+            return Redirect::back()->with('status', 'Không thể gửi email: người dùng chưa đăng nhập hoặc không có email.');
         }
 
         $user->notify(new TestSendEmail());
 
-        return Redirect::back()->with('status', 'Test email has been dispatched.');
+        return Redirect::back()->with('status', 'Kiểm tra email của bạn để xem thông báo đã gửi.');
     }
 }

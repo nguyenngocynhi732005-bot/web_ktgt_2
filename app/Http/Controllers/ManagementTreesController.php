@@ -25,11 +25,10 @@ class ManagementTreesController extends Controller
 
     public function show($id)
     {
-        $caycanh = SanPham::where('status', 1)->findOrFail($id);
-        
-        $brand = DB::table('danh_muc')->get();
-        
-        return view('caycanh.detail', compact('caycanh', 'brand'));
+        $sanpham = SanPham::where('status', 1)->findOrFail($id);
+        $loaicay = DB::table('danh_muc')->get();
+
+        return view('caycanh.detail', compact('sanpham', 'loaicay'));
     }
 
     // 3. Xử lý xóa mềm (Cập nhật status về 0)

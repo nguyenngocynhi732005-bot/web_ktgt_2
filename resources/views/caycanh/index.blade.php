@@ -19,7 +19,7 @@
     </div>
 
     <div class='list-caycanh'>
-<<<<<<< HEAD
+
         @foreach($cay as $row)
         <a href="{{ url('/sanpham/' . $row->id) }}" style="text-decoration: none; color: inherit;">
             <div class='caycanh'>
@@ -30,7 +30,7 @@
             </div>
         </a>
         @endforeach
-=======
+
         @forelse($cay as $row)
         <a href="{{ url('/loaicay/' . $row->id) }}" class="caycanh-link" style="text-decoration: none; color: inherit;">
             <div class='caycanh'>
@@ -44,7 +44,7 @@
             Không tìm thấy sản phẩm cây cảnh nào phù hợp.
         </div>
         @endforelse
->>>>>>> d81e85fdd523ffd5af041adac5d03d51b434b791
+
     </div>
 
 </x-cay-canh-layout>
