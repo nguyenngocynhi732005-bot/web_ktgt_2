@@ -157,15 +157,15 @@
                         <div class="dropdown">
                             <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
                                 {{ Auth::user()->name }}
-<<<<<<< HEAD
+
                                 </button>
                                 <div class="dropdown-menu">
                                 <a class="dropdown-item" href="{{ route('dashboard') }}">Quản lý</a>
-=======
+
                             </button>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="">Quản lý</a>
->>>>>>> remotes/origin/NgocAn
+
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <a class="dropdown-item" onclick="event.preventDefault();
