@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -46,5 +47,32 @@ class HomeController extends Controller
         $cay = $this->buildProductsQuery((int) $id, $sort)->get();
 
         return view("caycanh.index", compact('loaicay', 'cay'));
+    }
+
+    public function search(Request $request)
+    {
+        $keyword = trim((string) $request->input('keyword', ''));
+        $loaicay = DB::select('select * from danh_muc');
+
+        $query = DB::table('san_pham as sp')
+            ->select('sp.*')
+            ->where('sp.status', 1);
+
+        if ($keyword !== '') {
+            $query->where(function ($subQuery) use ($keyword) {
+                $subQuery->where('sp.ten_san_pham', 'like', "%{$keyword}%")
+                    ->orWhere('sp.ten_khoa_hoc', 'like', "%{$keyword}%")
+                    ->orWhere('sp.ten_thong_thuong', 'like', "%{$keyword}%")
+                    ->orWhere('sp.mo_ta', 'like', "%{$keyword}%")
+                    ->orWhere('sp.quy_cach_san_pham', 'like', "%{$keyword}%")
+                    ->orWhere('sp.do_kho', 'like', "%{$keyword}%")
+                    ->orWhere('sp.yeu_cau_anh_sang', 'like', "%{$keyword}%")
+                    ->orWhere('sp.nhu_cau_nuoc', 'like', "%{$keyword}%");
+            });
+        }
+
+        $cay = $query->orderBy('sp.id', 'desc')->get();
+
+        return view('caycanh.index', compact('loaicay', 'cay', 'keyword'));
     }
 }
