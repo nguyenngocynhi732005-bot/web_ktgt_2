@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use App\Models\SanPham;
 
 class HomeController extends Controller
 {
@@ -30,7 +31,6 @@ class HomeController extends Controller
         return $query;
     }
 
-    //
     public function index()
     {
         $loaicay = DB::select("select * from danh_muc");
