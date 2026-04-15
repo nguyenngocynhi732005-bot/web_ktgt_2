@@ -170,11 +170,40 @@
     </div>
 
     <script>
-        function addToCart(button) {
-            const productId = button.getAttribute('data-product-id');
-            const quantity = document.getElementById('quantity').value;
-            // TODO: Implement add to cart functionality
-            alert('Thêm ' + quantity + ' sản phẩm vào giỏ hàng');
+        async function addToCart(button) {
+            const productId = Number(button.getAttribute('data-product-id'));
+            const quantityInput = document.getElementById('quantity');
+            const rawQuantity = Number(quantityInput.value);
+            const quantity = Number.isInteger(rawQuantity) && rawQuantity > 0 ? rawQuantity : 1;
+            quantityInput.value = quantity;
+
+            try {
+                const response = await fetch("{{ url('/gio-hang/them') }}", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    body: JSON.stringify({
+                        product_id: productId,
+                        quantity: quantity
+                    })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message || 'Không thể thêm sản phẩm vào giỏ hàng');
+                }
+
+                const cartNumber = document.getElementById('cart-number-product');
+                if (cartNumber && typeof data.totalQuantity !== 'undefined') {
+                    cartNumber.textContent = data.totalQuantity;
+                }
+            } catch (error) {
+                console.error(error.message || 'Co loi xay ra khi them vao gio hang');
+            }
         }
     </script>
 

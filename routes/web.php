@@ -1,11 +1,10 @@
 <?php
 
 use App\Http\Controllers\HomeController;
-<<<<<<< HEAD
 
-=======
+
 use App\Http\Controllers\ProductController;
->>>>>>> remotes/origin/NgocAn
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SanPhamController;
 
@@ -30,7 +29,7 @@ Route::get('/dashboard', function () {
     //return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-<<<<<<< HEAD
+
 //Ngân
 Route::middleware('auth')->group(function () {
     Route::get('/caycanh_list', [ManagementTreesController::class, 'index'])->name('caycanh.index');
@@ -48,15 +47,17 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+Route::get('/gio-hang', [ProductController::class, 'order'])->name('cart.order');
+Route::post('/cart/delete', [ProductController::class, 'cartdelete'])->name('cartdelete');
+Route::post('/order/create', [ProductController::class, 'ordercreate'])
+->middleware('auth')->name('ordercreate');
+
+Route::get('/testemail','App\Http\Controllers\ProfileController@testemail');
 
 
 
-require __DIR__ . '/auth.php';
-
-//Ngọc An
-=======
 // Ngọc An - Product routes
->>>>>>> remotes/origin/NgocAn
+
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/loaicay', [HomeController::class, 'index']);
 Route::get('/loaicay/{id}', [HomeController::class, 'product']);
@@ -64,5 +65,6 @@ Route::get('/loaicay/{id}/{sort}', [HomeController::class, 'product']);
 
 // Quỳnh Anh - Product detail routes
 Route::get('/sanpham/{id}', [ProductController::class, 'detail']);
+Route::post('/gio-hang/them', [ProductController::class, 'addToCart']);
 
 require __DIR__ . '/auth.php';

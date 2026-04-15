@@ -27,7 +27,7 @@
                             <th>Nhu cầu nước</th>
                             <th>Giá bán</th>
                             <th>Ảnh</th>
-                            <th>Thao tac</th>
+                            <th>Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>

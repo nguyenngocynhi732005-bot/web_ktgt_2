@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Notifications\TestSendEmail;
+
 
 class ProfileController extends Controller
 {
@@ -56,5 +58,18 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+     public function testemail(Request $request): RedirectResponse
+    {
+        $user = $request->user();
+
+        if (! $user || empty($user->email)) {
+            return Redirect::back()->with('status', 'Cannot send email: user or email is missing.');
+        }
+
+        $user->notify(new TestSendEmail());
+
+        return Redirect::back()->with('status', 'Test email has been dispatched.');
     }
 }
