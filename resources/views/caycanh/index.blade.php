@@ -20,23 +20,12 @@
 
     <div class='list-caycanh'>
 
-        @foreach($cay as $row)
-        <a href="{{ url('/sanpham/' . $row->id) }}" style="text-decoration: none; color: inherit;">
-            <div class='caycanh'>
-                <img src="{{asset('storage/image/'.$row->hinh_anh)}}" width='200px'
-                    height='200px'><br>
-                <b>{{$row->ten_san_pham}}</b><br />
-                <b><i>{{number_format($row->gia_ban,0,",",".")}}đ</i></b>
-            </div>
-        </a>
-        @endforeach
-
         @forelse($cay as $row)
-        <a href="{{ url('/loaicay/' . $row->id) }}" class="caycanh-link" style="text-decoration: none; color: inherit;">
+        <a href="{{ url('/sanpham/' . $row->id) }}" class="caycanh-link" style="text-decoration: none; color: inherit;">
             <div class='caycanh'>
                 <img src="{{asset('storage/image/'.$row->hinh_anh)}}" width='200px' height='200px' alt="{{$row->ten_san_pham}}">
                 <b>{{$row->ten_san_pham}}</b>
-                <b><i>{{number_format($row->gia_ban,0,",",".")}}.000đ</i></b>
+                <b><i>{{number_format($row->gia_ban,0,",",".")}}đ</i></b>
             </div>
         </a>
         @empty
