@@ -52,7 +52,7 @@
       </a>
     </li>
     <li>
-      <a class="@if(request()->routeIs('')) active @endif" href="">
+      <a class="@if(request()->routeIs('caycanh_list')) active @endif" href="{{ route('caycanh.index') }}">
         {{ __('Quản lý sản phẩm') }}
       </a>
     </li>

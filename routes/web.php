@@ -1,17 +1,19 @@
 <?php
 
 use App\Http\Controllers\HomeController;
-<<<<<<< HEAD
+
 use App\Http\Controllers\ProfileController;
-=======
+
 use App\Http\Controllers\ManagementTreesController;
->>>>>>> 94cfa06419cdfac6f3e62b3472ae31d3fd9a66e6
+
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/dashboard', function () {
     //return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+//Ngân
 Route::middleware('auth')->group(function () {
     Route::get('/caycanh_list', [ManagementTreesController::class, 'index'])->name('caycanh.index');
     Route::get('/caycanh_list/{id}', [ManagementTreesController::class, 'show'])->name('caycanh.show');
