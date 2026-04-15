@@ -170,11 +170,46 @@
     </div>
 
     <script>
-        function addToCart(button) {
-            const productId = button.getAttribute('data-product-id');
-            const quantity = document.getElementById('quantity').value;
-            // TODO: Implement add to cart functionality
-            alert('Thêm ' + quantity + ' sản phẩm vào giỏ hàng');
+        async function addToCart(button) {
+            const productId = Number(button.getAttribute('data-product-id'));
+            const quantityInput = document.getElementById('quantity');
+            const quantity = Number(quantityInput.value);
+
+            if (!Number.isInteger(quantity) || quantity < 1) {
+                alert('Số lượng phải lớn hơn hoặc bằng 1');
+                quantityInput.focus();
+                return;
+            }
+
+            try {
+                const response = await fetch("{{ url('/gio-hang/them') }}", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    body: JSON.stringify({
+                        product_id: productId,
+                        quantity: quantity
+                    })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message || 'Không thể thêm sản phẩm vào giỏ hàng');
+                }
+
+                const cartNumber = document.getElementById('cart-number-product');
+                if (cartNumber && typeof data.totalQuantity !== 'undefined') {
+                    cartNumber.textContent = data.totalQuantity;
+                }
+
+                alert('Thêm ' + quantity + ' sản phẩm vào giỏ hàng');
+            } catch (error) {
+                alert(error.message || 'Có lỗi xảy ra, vui lòng thử lại');
+            }
         }
     </script>
 

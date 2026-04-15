@@ -17,5 +17,6 @@ Route::get('/loaicay/{id}/{sort}', [HomeController::class, 'product']);
 
 // Quỳnh Anh - Product detail routes
 Route::get('/sanpham/{id}', [ProductController::class, 'detail']);
+Route::post('/gio-hang/them', [ProductController::class, 'addToCart']);
 
 require __DIR__ . '/auth.php';
