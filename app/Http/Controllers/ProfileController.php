@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Notifications\TestSendEmail;
+
 
 class ProfileController extends Controller
 {
@@ -56,5 +58,18 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+     public function testemail(Request $request): RedirectResponse
+    {
+        $user = $request->user();
+
+        if (! $user || empty($user->email)) {
+            return Redirect::back()->with('status', 'Không thể gửi email: người dùng chưa đăng nhập hoặc không có email.');
+        }
+
+        $user->notify(new TestSendEmail());
+
+        return Redirect::back()->with('status', 'Kiểm tra email của bạn để xem thông báo đã gửi.');
     }
 }
