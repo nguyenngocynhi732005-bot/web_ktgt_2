@@ -13,3 +13,9 @@ Route::get('/dashboard', function () {
 
 
 require __DIR__.'/auth.php';
+
+//Quỳnh Anh - chi tiết
+
+Route::get('/san-pham/{id}', [HomeController::class, 'chiTietSanPham'])->name('sanpham.show');
+
+
