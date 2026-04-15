@@ -124,9 +124,6 @@
                 <div class='container-fluid p-0'>
                     <div class='col-7 p-0'>
                         <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/') }}">Trang chủ</a>
-                            </li>
                             @foreach($loaicay as $loai)
                             <li class="nav-item">
                                 <a class="nav-link" href="{{url('/loaicay/'.$loai->id)}}">{{$loai->ten_danh_muc}}</a>
