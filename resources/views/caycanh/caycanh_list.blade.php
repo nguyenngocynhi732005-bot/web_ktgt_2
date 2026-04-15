@@ -12,7 +12,7 @@
             <div class="section-title">QUẢN LÝ SẢN PHẨM</div>
 
             <div class="toolbar">
-                <button class="btn-add">Thêm</button>
+                <a class="btn-add" href="{{ route('sanpham.create') }}">Thêm</a>
             </div>
 
             <div class="table-container">

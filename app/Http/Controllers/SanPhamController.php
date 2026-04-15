@@ -11,6 +11,7 @@ class SanPhamController extends Controller
     public function create() 
     {
         $action = "add";
+        $loaicay = DB::table('danh_muc')->get();
         
         // Khởi tạo một object rỗng để View add.blade.php không bị lỗi thiếu biến
         $sanpham = new \stdClass();
@@ -27,7 +28,7 @@ class SanPhamController extends Controller
         $sanpham->hinh_anh = "";
         
         // Truyền cả $action và $sanpham sang View
-        return view("sanpham.add", compact("action", "sanpham")); 
+        return view("sanpham.add", compact("action", "sanpham", "loaicay")); 
     }
 
     public function save($action, Request $request) {

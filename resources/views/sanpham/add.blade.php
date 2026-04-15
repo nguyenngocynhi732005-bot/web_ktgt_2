@@ -1,4 +1,4 @@
-<x-cay-canh-layout>
+<x-cay-canh-layout :loaicay="$loaicay ?? []">
     @php
         $isEdit = ($action ?? 'add') !== 'add';
     @endphp

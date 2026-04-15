@@ -157,19 +157,12 @@
                         <div class="dropdown">
                             <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
                                 {{ Auth::user()->name }}
-
-                                </button>
-                                <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{{ route('dashboard') }}">Quản lý</a>
-
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="">Quản lý</a>
-
-                                <form method="POST" action="{{ route('logout') }}">
+                                <a class="dropdown-item" href="{{ route('dashboard') }}">Quản lý</a>
+                                <form method="POST" action="{{ route('logout') }}" class="m-0">
                                     @csrf
-                                    <a class="dropdown-item" onclick="event.preventDefault();
-                                                        this.closest('form').submit();">Đăng xuất</a>
+                                    <button type="submit" class="dropdown-item">Đăng xuất</button>
                                 </form>
                             </div>
                         </div>
