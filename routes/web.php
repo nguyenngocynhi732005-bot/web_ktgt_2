@@ -8,12 +8,11 @@ Route::get('/dashboard', function () {
     //return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-
-
-require __DIR__ . '/auth.php';
-
-//Ngọc An
+// Ngọc An - Product routes
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/loaicay', [HomeController::class, 'index']);
 Route::get('/loaicay/{id}', [HomeController::class, 'product']);
 Route::get('/loaicay/{id}/{sort}', [HomeController::class, 'product']);
+Route::get('/sanpham/{id}', [HomeController::class, 'chiTietSanPham']);
+
+require __DIR__ . '/auth.php';

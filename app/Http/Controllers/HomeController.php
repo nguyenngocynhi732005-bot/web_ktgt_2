@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use App\Models\SanPham;
 
 class HomeController extends Controller
 {
@@ -30,7 +31,6 @@ class HomeController extends Controller
         return $query;
     }
 
-    //
     public function index()
     {
         $loaicay = DB::select("select * from danh_muc");
@@ -46,5 +46,12 @@ class HomeController extends Controller
         $cay = $this->buildProductsQuery((int) $id, $sort)->get();
 
         return view("caycanh.index", compact('loaicay', 'cay'));
+    }
+
+    public function chiTietSanPham($id)
+    {
+        $sanpham = SanPham::with('danhMucs')->findOrFail($id);
+
+        return view('caycanh.detail', compact('sanpham'));
     }
 }
