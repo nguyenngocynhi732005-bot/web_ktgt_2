@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     private function buildProductsQuery(?int $categoryId = null, ?string $sort = null)
     {
-        $query = DB::table('san_pham as sp')->select('sp.*');
+        $query = DB::table('san_pham as sp')->select('sp.*')->where('sp.status', 1);
 
         if ($categoryId !== null) {
             $query->join('sanpham_danhmuc as sp_dm', 'sp.id', '=', 'sp_dm.id_san_pham')
