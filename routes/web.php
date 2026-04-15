@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -13,6 +14,8 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/loaicay', [HomeController::class, 'index']);
 Route::get('/loaicay/{id}', [HomeController::class, 'product']);
 Route::get('/loaicay/{id}/{sort}', [HomeController::class, 'product']);
-Route::get('/sanpham/{id}', [HomeController::class, 'chiTietSanPham']);
+
+// Quỳnh Anh - Product detail routes
+Route::get('/sanpham/{id}', [ProductController::class, 'detail']);
 
 require __DIR__ . '/auth.php';

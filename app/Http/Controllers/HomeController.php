@@ -47,11 +47,4 @@ class HomeController extends Controller
 
         return view("caycanh.index", compact('loaicay', 'cay'));
     }
-
-    public function chiTietSanPham($id)
-    {
-        $sanpham = SanPham::with('danhMucs')->findOrFail($id);
-
-        return view('caycanh.detail', compact('sanpham'));
-    }
 }
